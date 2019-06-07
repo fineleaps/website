@@ -17,8 +17,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls import url, include
+from django.views.static import serve
+from django.conf import settings
 
 urlpatterns = [
     path('flsadmin/', admin.site.urls),
-    url(r'', include('website.urls'), name='blank_url')
+    url(r'', include('website.urls'), name='blank_url'),
+url(r'^static/(?P<path>.*)$', serve,{'document_root': settings.STATIC_ROOT}),
+
 ]
