@@ -23,13 +23,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '67$!o3u1@m7daz8lw2yo_6%d(#t4p#pk5r!+i%twsqal&ack=m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = [u"www.flsystems.co.in"]
+ALLOWED_HOSTS = ["*"]
 
 # Application definition
 
 INSTALLED_APPS = [
+    'compressor',
+
     'website',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -37,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
 ]
 
 MIDDLEWARE = [
@@ -103,6 +107,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
 
 
 LANGUAGE_CODE = 'en-us'
@@ -120,12 +130,7 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
-# default static files settings for PythonAnywhere.
-# see https://help.pythonanywhere.com/pages/DjangoStaticFiles for more info
-MEDIA_ROOT = u'/home/fineleapsystems/flsweb/media'
-MEDIA_URL = '/media/'
-STATIC_ROOT = u'/home/fineleapsystems/flsweb/static'
-STATIC_URL = '/static/'
+COMPRESS_ROOT = os.path.join(BASE_DIR, "static")
 
 
 
