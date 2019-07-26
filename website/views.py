@@ -4,7 +4,7 @@ from django.http import HttpResponse, JsonResponse
 
 
 def homepage(request):
-    return render(request, 'home_without_compress.html')
+    return render(request, 'home.html')
 
 
 def enquiry_form(request):
